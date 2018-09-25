@@ -1,0 +1,15 @@
+*{margin: 0;padding: 0;box-sizing: border-box;}
+canvas{
+    background: green;
+}
+.actions{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+.actions >button{
+    display: inline-block;
+    padding: 5px 6px;
+    margin: 3px 4px;
+    border-radius: 3px;
+}
