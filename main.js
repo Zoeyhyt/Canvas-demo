@@ -41,7 +41,34 @@ function drawLine(x1,y1,x2,y2,color = 'black',lineWidth = 5){
 function listenToMouse(){
     var using = false
     let lastPoint = {x:undefined,y:undefined}
-    canvas.onmousedown = function(a){
+    if(document.body.ontouchstart !== undefined){
+        canvas.ontouchstart = function(a){
+            let x = a.touches[0].clientX
+            let y = a.touches[0].clientY
+            using = true
+            if(eraserEnabled){
+                context.clearRect(x-5,y-5,10,10)
+            }else{
+                lastPoint = {x:x,y:y}
+            }
+        }
+        canvas.ontouchmove = function(a){
+            let x = a.touches[0].clientX
+            let y = a.touches[0].clientY
+            if(!using){return}
+            if(eraserEnabled){
+                context.clearRect(x-5,y-5,10,10)
+            }else{      
+                let newPoint = {x:x,y:y}
+                drawLine(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y)
+                lastPoint = newPoint
+            }       
+        }
+        canvas.ontouchend = function(){
+            using = false
+        }
+    }else{
+        canvas.onmousedown = function(a){
         let x = a.clientX
         let y = a.clientY
         using = true
@@ -50,22 +77,22 @@ function listenToMouse(){
         }else{
             lastPoint = {x:x,y:y}
         }
-        
-    }
-    canvas.onmousemove = function(a){
-        let x = a.clientX
-        let y = a.clientY
-        if(!using){return}
-        if(eraserEnabled){
-            context.clearRect(x-5,y-5,10,10)
-        }else{      
-            let newPoint = {x:x,y:y}
-            drawLine(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y)
-            lastPoint = newPoint
         }
-        
-    }
-    canvas.onmouseup = function(){
-        using = false
-    }
+        canvas.onmousemove = function(a){
+            let x = a.clientX
+            let y = a.clientY
+            if(!using){return}
+            if(eraserEnabled){
+                context.clearRect(x-5,y-5,10,10)
+            }else{      
+                let newPoint = {x:x,y:y}
+                drawLine(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y)
+                lastPoint = newPoint
+            }
+            
+        }
+        canvas.onmouseup = function(){
+            using = false
+        }
+    } 
 }
