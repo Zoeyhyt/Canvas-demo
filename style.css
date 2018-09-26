@@ -1,6 +1,9 @@
 *{margin: 0;padding: 0;box-sizing: border-box;}
+body{
+    border: thick double #32a1ce;
+}
 canvas{
-    background: green;
+
 }
 .actions{
     position: fixed;
