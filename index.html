@@ -8,23 +8,27 @@
     <title>Canvas</title>
     <style type="text/css">
         .icon {
-           width: 2em; height: 2em;
-           vertical-align: -0.15em;
-           fill: currentColor;
-           overflow: hidden;
+            width: 2em;
+            height: 2em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+            margin: 0 5px;;
         }
     </style>
 </head>
 <body>
-    <canvas id="canvas"></canvas>
-    <div class="actions">
-        <svg id="pen" class="icon" aria-hidden="true">
+    <div class="wrapper">
+        <canvas id="canvas"></canvas>
+        <div class="actions">
+            <svg id="pen" class="icon" aria-hidden="true">
                 <use xlink:href="#icon-pen"></use>
-        </svg>
-        <svg id="eraser" class="icon" aria-hidden="true">
+            </svg>
+            <svg id="eraser" class="icon" aria-hidden="true">
                 <use xlink:href="#icon-eraser"></use>
-        </svg>
-    </div>   
+            </svg>
+        </div>
+    </div>
     <script src="//at.alicdn.com/t/font_853650_anqsigtxk98.js"></script>
     <script src="main.js"></script>
 </body>

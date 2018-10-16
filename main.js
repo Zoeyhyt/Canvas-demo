@@ -1,4 +1,5 @@
 var canvas = document.getElementById('canvas')
+var pen = document.getElementById('pen')
 var eraser = document.getElementById('eraser')
 var context = canvas.getContext('2d')
 autoSetCanvasSize(canvas)
@@ -13,8 +14,8 @@ function autoSetCanvasSize(canvas){
     function setCanvasSize(){
         let pageWidth = document.documentElement.clientWidth
         let pageHeight = document.documentElement.clientHeight
-        canvas.width = pageWidth
-        canvas.height = pageHeight
+        canvas.width = pageWidth-32
+        canvas.height = pageHeight-60
     }
 }
 
@@ -23,16 +24,24 @@ function autoSetCanvasSize(canvas){
 var eraserEnabled = false
 eraser.onclick = function(){
     eraserEnabled = true
+    eraser.classList.add('active')
+    pen.classList.remove('active')
 }
+pen.onclick = function(){
+    eraserEnabled = false
+    pen.classList.add('active')
+    eraser.classList.remove('active')
+}
+
 
 
 //画线
 function drawLine(x1,y1,x2,y2,color = 'black',lineWidth = 5){
     context.beginPath();
     context.strokeStyle = color;
-    context.moveTo(x1,y1);//起点
+    context.moveTo(x1-10,y1-10);//起点
     context.lineWidth = lineWidth;
-    context.lineTo(x2,y2);//终点
+    context.lineTo(x2-10,y2-10);//终点
     context.stroke();
     context.closePath()
 }
@@ -69,15 +78,16 @@ function listenToMouse(){
         }
     }else{
         canvas.onmousedown = function(a){
-        let x = a.clientX
-        let y = a.clientY
-        using = true
-        if(eraserEnabled){
-            context.clearRect(x-5,y-5,10,10)
-        }else{
-            lastPoint = {x:x,y:y}
-        }
-        }
+            console.log(a)
+            let x = a.clientX
+            let y = a.clientY
+            using = true
+            if(eraserEnabled){
+                context.clearRect(x-5,y-5,10,10)
+            }else{
+                lastPoint = {x:x,y:y}
+            }
+            }
         canvas.onmousemove = function(a){
             let x = a.clientX
             let y = a.clientY
