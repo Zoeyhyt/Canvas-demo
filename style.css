@@ -1,5 +1,5 @@
 *{margin: 0;padding: 0;box-sizing: border-box;}
-
+ol,li{list-style: none;}
 .wrapper{
     border: thick double #32a1ce; 
     margin: 10px;
@@ -11,10 +11,34 @@ canvas{
 .actions{
     position: absolute;
     left: 10px;
-    bottom: 10px;
+    top: 10px;
     transition:all 0.2s;
 }
-.active{
+.actions >svg.active{
     transform: scale(1.2);
-    
+    color: red;
+}
+.colors{
+    position: absolute;
+    left: 15px;
+    top: 60px;
+}
+.colors >li{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin: 20px 0;
+}
+.colors >li.active{
+    transform: scale(1.2);
+    box-shadow: 0 0 0.3 #aaa;
+}
+#red{
+    background: red;
+}
+#green{
+    background: green;
+}
+#blue{
+    background: blue;
 }
